@@ -631,7 +631,7 @@ function init(staticryptConfig, templateConfig) {
         if (typeof replaceHtmlCallback === "function") {
             replaceHtmlCallback(plainHTML);
         } else {
-            document.write(plainHTML);
+            const blob = new Blob([plainHTML], {type: "text/html"}); window.location.replace(URL.createObjectURL(blob));
             document.close();
         }
 
