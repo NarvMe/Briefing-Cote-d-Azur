@@ -8,6 +8,9 @@ Passwortgeschützte Törn-Briefing-App für den Segeltörn Côte d'Azur 2026.
 
 ## Release Notes
 
+### Version 2.1 — 25.04.2026
+- 📍 Heimathafen-Pin Rolland auf Karte korrigiert
+
 ### Version 2.0 — 25.04.2026
 - 📍 Heimathafen-Pin Rolland auf der Karte
 - 🌬️ Mistral-Sektion im Wetter-Tab
