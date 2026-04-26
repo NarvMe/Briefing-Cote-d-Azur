@@ -10,6 +10,9 @@ Passwortgeschützte Törn-Briefing-App für den Segeltörn Côte d'Azur 2026.
 
 ## Release Notes
 
+### Version 3.5 — 26.04.2026
+- 📸 Luftbild jedes Ortes im Bottom Sheet (Esri World Imagery)
+
 ### Version 3.4 — 26.04.2026
 - 🛰️ Satellitenbild-Toggle auf der Karte (unter dem Zoom-Button, Esri World Imagery)
 
