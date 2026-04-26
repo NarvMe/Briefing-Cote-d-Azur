@@ -1,4 +1,4 @@
-const CACHE_VERSION = 'v4.0';
+const CACHE_VERSION = 'v4.1';
 const CACHE_NAME = `briefing-${CACHE_VERSION}`;
 
 // Install: skip waiting so new SW activates immediately
