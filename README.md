@@ -1,5 +1,7 @@
 # Briefing Côte d'Azur 2026
 
+*Dislaimer: Claude Cowork und Claude Code Hobby Project*
+
 Passwortgeschützte Törn-Briefing-App für den Segeltörn Côte d'Azur 2026.
 
 🔗 **[→ Zur App](https://narvme.github.io/Briefing-Cote-d-Azur/)**
