@@ -10,6 +10,14 @@ Passwortgeschützte Törn-Briefing-App für den Segeltörn Côte d'Azur 2026.
 
 ## Release Notes
 
+### Version 4.0 — 26.04.2026
+- 🌍 **Zweites Revier**: Kroatien / Dalmatien hinzugefügt
+- 🔀 Region-Umschalter oben rechts (Auswahl in `localStorage` persistiert)
+- 🌬️ Bora & Jugo Wind-Indikatoren statt Mistral wenn Adria gewählt
+- ⚓ Skipper-Notizen für 8 Buchten (Tatinja, Lučice, Gradina, Milna, …)
+- 🗺️ Karte zeigt automatisch die richtigen Marker je Revier
+- 📋 Nationalpark-Bojeninfo (Kornati, Mljet) + Reservierungs-Plattformen
+
 ### Version 3.6 — 26.04.2026
 - 📍 Marker-Positionen aller Häfen, Buchten und Calanques korrigiert (lagen teilweise auf Land)
 
