@@ -8,11 +8,15 @@ Passwortgeschützte Törn-Briefing-App für den Segeltörn Côte d'Azur 2026.
 
 ## Release Notes
 
+### Version 2.4 — 26.04.2026
+- 💬 "Was ist neu"-Popup bei neuen Versionen
+- Version-Badge im Footer zum manuellen Öffnen des Popups
+
 ### Version 2.3 — 26.04.2026
 - 📦 Aktualisierter Inhalt aus lokalem Projektordner
 
 ### Version 2.2 — 26.04.2026
-- 🔄 Service Worker: App aktualisiert sich ab jetzt automatisch
+- 🔄 Service Worker: App aktualisiert sich automatisch
 
 ### Version 2.1 — 25.04.2026
 - 📍 Heimathafen-Pin Rolland auf Karte korrigiert
