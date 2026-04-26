@@ -1,14 +1,19 @@
-# Briefing Côte d'Azur 2026
+# ⛵ Sailing Briefing
 
-*Dislaimer: Claude Cowork and Claude Code Hobby project*
+*Disclaimer: Claude Cowork and Claude Code Hobby project*
 
-Passwortgeschützte Törn-Briefing-App für den Segeltörn Côte d'Azur 2026.
+Passwortgeschützte Törn-Briefing-App mit mehreren Revieren (Côte d'Azur, Dalmatien).
 
-🔗 **[→ Zur App](https://narvme.github.io/Briefing-Cote-d-Azur/)**
+🔗 **[→ Zur App](https://narvme.github.io/Sailing-Briefing/)**
 
 ---
 
 ## Release Notes
+
+### Version 4.1 — 26.04.2026
+- ⛵ Umbenannt zu **Sailing Briefing** (Repo + App-Titel + Apple Home-Screen)
+- 🎨 Segelboot-Emoji als Favicon und Apple-Touch-Icon
+- 🔁 Service-Worker-Pfad relativ (überlebt Repo-Rename)
 
 ### Version 4.0 — 26.04.2026
 - 🌍 **Zweites Revier**: Kroatien / Dalmatien hinzugefügt
