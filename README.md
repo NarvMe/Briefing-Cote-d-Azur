@@ -8,12 +8,16 @@ Passwortgeschützte Törn-Briefing-App für den Segeltörn Côte d'Azur 2026.
 
 ## Release Notes
 
+### Version 3.0 — 26.04.2026
+- 🗺️ OpenSeaMap-Overlay auf der Seekarte (Seezeichen, Tiefen etc.)
+- ⚓ Neue SVG-Icons: Anker-Icon für Marinas, Wellen-Icon für Ankerbuchten
+- 📋 Bottom Sheet statt Popup — Infos fahren von unten ein, kein Tippen auf winzige Popups
+
 ### Version 2.4 — 26.04.2026
 - 💬 "Was ist neu"-Popup bei neuen Versionen
-- Version-Badge im Footer zum manuellen Öffnen des Popups
 
 ### Version 2.3 — 26.04.2026
-- 📦 Aktualisierter Inhalt aus lokalem Projektordner
+- 📦 Aktualisierter Inhalt
 
 ### Version 2.2 — 26.04.2026
 - 🔄 Service Worker: App aktualisiert sich automatisch
