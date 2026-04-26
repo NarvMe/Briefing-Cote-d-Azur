@@ -1,12 +1,15 @@
 # Briefing Côte d'Azur 2026
 
-Passwortgeschützte Törn-Briefing-App.
+Passwortgeschützte Törn-Briefing-App für den Segeltörn Côte d'Azur 2026.
 
 🔗 **[→ Zur App](https://narvme.github.io/Briefing-Cote-d-Azur/)**
 
 ---
 
 ## Release Notes
+
+### Version 3.4 — 26.04.2026
+- 🛰️ Satellitenbild-Toggle auf der Karte (unter dem Zoom-Button, Esri World Imagery)
 
 ### Version 3.3 — 26.04.2026
 - 🛠️ Lizenzen-Popup öffnet korrekt (DOM-Reihenfolge Fix)
