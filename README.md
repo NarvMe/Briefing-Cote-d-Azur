@@ -10,6 +10,12 @@ Passwortgeschützte Törn-Briefing-App mit mehreren Revieren (Côte d'Azur, Dalm
 
 ## Release Notes
 
+### Version 4.2 — 30.04.2026
+- 📊 PostHog-Analytics (EU-Cloud, anonym, opt-out per default)
+- 🛡️ Cookie-Banner für DSGVO-Zustimmung
+- 🔍 Tab-Verweildauer und Funnel-Schritte werden gemessen
+- 📄 [`ANALYTICS.md`](./ANALYTICS.md) dokumentiert den Tracking-Plan
+
 ### Version 4.1 — 26.04.2026
 - ⛵ Umbenannt zu **Sailing Briefing** (Repo + App-Titel + Apple Home-Screen)
 - 🎨 Segelboot-Emoji als Favicon und Apple-Touch-Icon
