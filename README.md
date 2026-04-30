@@ -10,6 +10,12 @@ Passwortgeschützte Törn-Briefing-App mit mehreren Revieren (Côte d'Azur, Dalm
 
 ## Release Notes
 
+### Version 4.4 — 30.04.2026
+- 🆕 What's-New-Popup zeigt Änderungen jetzt nach Versionsnummern gruppiert
+- 🛠️ Bugfix: Schließbuttons in Popups reagieren auf iPhone zuverlässig
+- 🛠️ Bugfix: Cookie-Banner schließt jetzt auch auf kleinen Bildschirmen sofort
+- 📱 Mobile-Layout für iPhone optimiert (iPad bleibt Hauptziel)
+
 ### Version 4.3 — 30.04.2026
 - 🔑 PostHog-Key eingetragen — Tracking aktiv nach Banner-Zustimmung
 

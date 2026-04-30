@@ -59,8 +59,18 @@
   function hideBanner() {
     var wrap = document.getElementById('consent-banner');
     if (!wrap) return;
+    // Mark as hiding immediately to give visual feedback even if removal takes a frame
+    wrap.classList.add('cb-hiding');
     wrap.classList.remove('cb-visible');
-    setTimeout(function () { if (wrap.parentNode) wrap.parentNode.removeChild(wrap); }, 350);
+    // Remove from DOM after the (shorter) transition; fallback in case transitionend doesn't fire
+    var removed = false;
+    var remove = function () {
+      if (removed) return;
+      removed = true;
+      if (wrap.parentNode) wrap.parentNode.removeChild(wrap);
+    };
+    wrap.addEventListener('transitionend', remove, { once: true });
+    setTimeout(remove, 250);
   }
 
   function showBanner() {
