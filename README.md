@@ -10,6 +10,9 @@ Passwortgeschützte Törn-Briefing-App mit mehreren Revieren (Côte d'Azur, Dalm
 
 ## Release Notes
 
+### Version 4.3 — 30.04.2026
+- 🔑 PostHog-Key eingetragen — Tracking aktiv nach Banner-Zustimmung
+
 ### Version 4.2 — 30.04.2026
 - 📊 PostHog-Analytics (EU-Cloud, anonym, opt-out per default)
 - 🛡️ Cookie-Banner für DSGVO-Zustimmung
