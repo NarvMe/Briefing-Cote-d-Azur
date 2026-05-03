@@ -10,6 +10,9 @@ Passwortgeschützte Törn-Briefing-App mit mehreren Revieren (Côte d'Azur, Dalm
 
 ## Release Notes
 
+### Version 4.7 — 30.04.2026
+- ⚓ Navily-Link in jedem Bottom Sheet (alle 45 Orte)
+
 ### Version 4.6 — 30.04.2026
 - 🗺️ 19 neue Orte auf der Karte (Frioul, Calanques, Giens, Porquerolles, Cap Lardier, Cogolin)
 - 📋 Alle 45 Côte-d'Azur Locations mit strukturierten Daten (Tiefe, Grund, Schutz, Skipper-Tipp)
