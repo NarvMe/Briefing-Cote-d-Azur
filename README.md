@@ -10,6 +10,12 @@ Passwortgeschützte Törn-Briefing-App mit mehreren Revieren (Côte d'Azur, Dalm
 
 ## Release Notes
 
+### Version 4.6 — 30.04.2026
+- 🗺️ 19 neue Orte auf der Karte (Frioul, Calanques, Giens, Porquerolles, Cap Lardier, Cogolin)
+- 📋 Alle 45 Côte-d'Azur Locations mit strukturierten Daten (Tiefe, Grund, Schutz, Skipper-Tipp)
+- 📞 Kontakt-Chips (Tel/Web/VHF) wo verfügbar
+- 🚫 Klare Markierung von Plätzen mit 12 m-Limit für die 16 m-Yacht
+
 ### Version 4.5 — 30.04.2026
 - 📝 Erweitertes Schema für Marker-Locations: optionale Felder `meta`, `skipper`, `kontakt`
 - 🎨 Bottom Sheet zeigt strukturierte Daten als Chips, Skipper-Notizen als eigene Sektion
