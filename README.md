@@ -10,6 +10,11 @@ Passwortgeschützte Törn-Briefing-App mit mehreren Revieren (Côte d'Azur, Dalm
 
 ## Release Notes
 
+### Version 4.5 — 30.04.2026
+- 📝 Erweitertes Schema für Marker-Locations: optionale Felder `meta`, `skipper`, `kontakt`
+- 🎨 Bottom Sheet zeigt strukturierte Daten als Chips, Skipper-Notizen als eigene Sektion
+- 🧱 Pin Rolland und En-Vau als vollständig befüllte Beispiele
+
 ### Version 4.4 — 30.04.2026
 - 🆕 What's-New-Popup zeigt Änderungen jetzt nach Versionsnummern gruppiert
 - 🛠️ Bugfix: Schließbuttons in Popups reagieren auf iPhone zuverlässig
