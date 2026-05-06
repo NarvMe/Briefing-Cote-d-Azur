@@ -10,6 +10,10 @@ Passwortgeschützte Törn-Briefing-App mit mehreren Revieren (Côte d'Azur, Dalm
 
 ## Release Notes
 
+### Version 4.8 — 06.05.2026
+- ⚽ Neue Route C "Fussball Route" für Kroatien (Häfen an WM-Spieltagen)
+- 📅 Routen A & B auf 6 Tage / 5 Nächte gekürzt (05.–10.07.)
+
 ### Version 4.7 — 30.04.2026
 - ⚓ Navily-Link in jedem Bottom Sheet (alle 45 Orte)
 
