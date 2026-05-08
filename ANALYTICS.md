@@ -34,13 +34,45 @@ Tab/Menü wurde geöffnet. **Verweildauer-Start**.
 
 ### `menu_duration`
 Tab/Menü wurde verlassen. Verweildauer in Millisekunden.
-Wird auch beim `beforeunload` gefeuert.
+Wird auch beim `pagehide` (Seitenschluss) und `visibilitychange:hidden`
+(App in den Hintergrund) gefeuert. iOS Safari feuert kein `beforeunload`,
+deshalb wird `pagehide` genutzt.
 
-| Property      | Typ    | Beispiel    |
-| ------------- | ------ | ----------- |
-| `menu_name`   | string | `weather`   |
-| `duration_ms` | number | `42_500`    |
-| `unload`      | bool   | nur bei beforeunload |
+| Property      | Typ    | Beispiel                          |
+| ------------- | ------ | --------------------------------- |
+| `menu_name`   | string | `weather`                         |
+| `duration_ms` | number | `42_500`                          |
+| `unload`      | bool   | `true` bei `pagehide`             |
+| `end_reason`  | string | `pagehide` \| `hidden` (oder leer) |
+
+### `route_open`
+Sub-View innerhalb eines Tabs geöffnet (Tagesplan-Routen-Toggle A/B in Côte d'Azur,
+A/B/C in Kroatien). **Verweildauer-Start für die Route**.
+
+| Property     | Typ    | Beispiel                                   |
+| ------------ | ------ | ------------------------------------------ |
+| `route_name` | string | `cdazur-ost`, `cdazur-ost-west`, `croatia-a`, `croatia-b`, `croatia-c` |
+| `region`     | string | `cote-azur` \| `croatia`                   |
+| `menu`       | string | `plan`                                     |
+| `initial`    | bool   | `true` beim ersten Plan-Tab-Öffnen          |
+
+### `route_duration`
+Route wurde verlassen (durch Toggle, Tab-Wechsel, App-Hide oder Seitenschluss).
+
+| Property      | Typ    | Beispiel             |
+| ------------- | ------ | -------------------- |
+| `route_name`  | string | `cdazur-ost`         |
+| `duration_ms` | number | `15_300`             |
+| `unload`      | bool   | `true` bei `pagehide` |
+| `end_reason`  | string | `pagehide` \| `hidden` (oder leer) |
+
+### `map_filter_changed`
+Karten-Filter umgeschaltet (Alle / Häfen / Buchten / Route).
+
+| Property | Typ    | Beispiel                           |
+| -------- | ------ | ---------------------------------- |
+| `filter` | string | `all` \| `port` \| `anchor` \| `route` |
+| `region` | string | `cote-azur` \| `croatia`           |
 
 ### `region_switch`
 Nutzer hat zwischen Côte d'Azur und Kroatien gewechselt.
@@ -128,6 +160,12 @@ window.SailingAnalytics.trackMenuOpen('weather', { region: 'cote-azur' });
 
 // Menü explizit schließen (passiert sonst automatisch beim nächsten Open)
 window.SailingAnalytics.trackMenuClose('weather');
+
+// Sub-Route innerhalb eines Tabs öffnen (z.B. Tagesplan-Toggle)
+window.SailingAnalytics.trackRouteOpen('cdazur-ost', { region: 'cote-azur', menu: 'plan' });
+
+// Sub-Route schließen (passiert automatisch bei Toggle, Tab-Wechsel, pagehide)
+window.SailingAnalytics.trackRouteClose('cdazur-ost');
 
 // Funnel-Schritt
 window.SailingAnalytics.trackFunnelStep('toern_vorbereitung', 'overview');

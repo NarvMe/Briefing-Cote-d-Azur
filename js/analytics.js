@@ -13,6 +13,8 @@
   var queue = [];
   var currentMenu = null;
   var currentMenuStart = null;
+  var currentRoute = null;       // Sub-View innerhalb eines Menüs (z.B. Tagesplan A/B, Kroatien-Route a/b/c)
+  var currentRouteStart = null;
 
   function isReady() {
     return typeof window.posthog !== 'undefined' && window.posthog.__loaded;
@@ -31,22 +33,17 @@
 
   document.addEventListener('phLoaded', flushQueue);
 
-  /**
-   * Generischer Event-Tracker. Funktioniert auch vor PostHog-Load
-   * (Events werden gequeued).
-   */
   function trackEvent(name, properties) {
     properties = properties || {};
     if (isReady()) safeCapture(name, properties);
     else queue.push([name, properties]);
   }
 
-  /**
-   * Wird beim Öffnen eines Menüs/Tabs aufgerufen. Schließt automatisch
-   * das vorher offene Menü und sendet dessen Verweildauer.
-   */
+  // ── Menu (Tabs) ──────────────────────────────────────────────
   function trackMenuOpen(menuName, extraProps) {
     if (currentMenu && currentMenu !== menuName) {
+      // Aktive Sub-Route gehört immer zum alten Menu — vor Menu-Close abschließen
+      if (currentRoute) trackRouteClose(currentRoute);
       trackMenuClose(currentMenu);
     }
     currentMenu = menuName;
@@ -54,10 +51,6 @@
     trackEvent('menu_open', Object.assign({ menu_name: menuName }, extraProps || {}));
   }
 
-  /**
-   * Schließt explizit ein Menü und sendet die Verweildauer.
-   * Wird automatisch von trackMenuOpen() für das vorige Menü aufgerufen.
-   */
   function trackMenuClose(menuName, durationMs) {
     if (!menuName) menuName = currentMenu;
     if (!menuName) return;
@@ -73,14 +66,32 @@
     }
   }
 
-  /**
-   * Explizite Funnel-Schritte. Properties werden mit funnel_name + step
-   * angereichert und unter Event 'funnel_step' gesendet.
-   *
-   * Beispiel:
-   *   trackFunnelStep('toern_vorbereitung', 'overview')
-   *   trackFunnelStep('marker_exploration', 'marker_clicked', { name: 'Cassis' })
-   */
+  // ── Route (Sub-Views innerhalb eines Tabs) ───────────────────
+  function trackRouteOpen(routeName, extraProps) {
+    if (currentRoute && currentRoute !== routeName) {
+      trackRouteClose(currentRoute);
+    }
+    currentRoute = routeName;
+    currentRouteStart = performance.now();
+    trackEvent('route_open', Object.assign({ route_name: routeName }, extraProps || {}));
+  }
+
+  function trackRouteClose(routeName, durationMs) {
+    if (!routeName) routeName = currentRoute;
+    if (!routeName) return;
+    if (typeof durationMs !== 'number') {
+      durationMs = currentRouteStart != null
+        ? Math.round(performance.now() - currentRouteStart)
+        : 0;
+    }
+    trackEvent('route_duration', { route_name: routeName, duration_ms: durationMs });
+    if (routeName === currentRoute) {
+      currentRoute = null;
+      currentRouteStart = null;
+    }
+  }
+
+  // ── Funnel ───────────────────────────────────────────────────
   function trackFunnelStep(funnelName, step, properties) {
     properties = properties || {};
     trackEvent('funnel_step', Object.assign({
@@ -89,18 +100,38 @@
     }, properties));
   }
 
-  // Beim Verlassen der Seite das aktuell offene Menü sauber abschließen.
-  // sendBeacon-fähig: PostHog nutzt navigator.sendBeacon im pageleave-Modus.
-  window.addEventListener('beforeunload', function () {
-    if (currentMenu && isReady()) {
-      var durationMs = currentMenuStart != null
-        ? Math.round(performance.now() - currentMenuStart)
-        : 0;
-      safeCapture('menu_duration', {
-        menu_name: currentMenu,
-        duration_ms: durationMs,
-        unload: true
-      });
+  // ── Lifecycle: pagehide + visibilitychange ───────────────────
+  // beforeunload feuert auf iOS Safari nicht zuverlässig — pagehide schon.
+  // visibilitychange behandelt App-in-Hintergrund (Tab-Wechsel, Lock-Screen).
+
+  function flushDurations(reason) {
+    if (!isReady()) return;
+    var now = performance.now();
+    if (currentMenu) {
+      var menuDur = currentMenuStart != null ? Math.round(now - currentMenuStart) : 0;
+      safeCapture('menu_duration', { menu_name: currentMenu, duration_ms: menuDur, unload: reason === 'pagehide', end_reason: reason });
+    }
+    if (currentRoute) {
+      var routeDur = currentRouteStart != null ? Math.round(now - currentRouteStart) : 0;
+      safeCapture('route_duration', { route_name: currentRoute, duration_ms: routeDur, unload: reason === 'pagehide', end_reason: reason });
+    }
+  }
+
+  window.addEventListener('pagehide', function () { flushDurations('pagehide'); });
+
+  document.addEventListener('visibilitychange', function () {
+    if (document.hidden) {
+      // App ging in den Hintergrund: aktuelle Verweildauern absenden, Counter pausieren
+      flushDurations('hidden');
+      // Start-Zeitpunkte zurücksetzen, damit beim erneuten Sichtbarwerden
+      // nicht die Hintergrundzeit fälschlich mitgezählt wird.
+      if (currentMenu) currentMenuStart = null;
+      if (currentRoute) currentRouteStart = null;
+    } else {
+      // Wieder sichtbar: Counter neu starten
+      var now = performance.now();
+      if (currentMenu) currentMenuStart = now;
+      if (currentRoute) currentRouteStart = now;
     }
   });
 
@@ -109,6 +140,8 @@
     trackEvent: trackEvent,
     trackMenuOpen: trackMenuOpen,
     trackMenuClose: trackMenuClose,
+    trackRouteOpen: trackRouteOpen,
+    trackRouteClose: trackRouteClose,
     trackFunnelStep: trackFunnelStep
   };
 })();
