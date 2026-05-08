@@ -10,6 +10,9 @@ Passwortgeschützte Törn-Briefing-App mit mehreren Revieren (Côte d'Azur, Dalm
 
 ## Release Notes
 
+### Version 4.9 — 06.05.2026
+- 🛠️ Wochentag-Labels in Côte-d'Azur-Routen korrigiert (Tag-Bug aus Initialversion)
+
 ### Version 4.8 — 06.05.2026
 - ⚽ Neue Route C "Fussball Route" für Kroatien (Häfen an WM-Spieltagen)
 - 📅 Routen A & B auf 6 Tage / 5 Nächte gekürzt (05.–10.07.)
