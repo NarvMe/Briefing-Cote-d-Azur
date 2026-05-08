@@ -13,8 +13,10 @@
   var queue = [];
   var currentMenu = null;
   var currentMenuStart = null;
+  var currentMenuProps = null;   // Open-Properties (z.B. region) — werden beim *_duration mitgesendet
   var currentRoute = null;       // Sub-View innerhalb eines Menüs (z.B. Tagesplan A/B, Kroatien-Route a/b/c)
   var currentRouteStart = null;
+  var currentRouteProps = null;
 
   function isReady() {
     return typeof window.posthog !== 'undefined' && window.posthog.__loaded;
@@ -48,7 +50,8 @@
     }
     currentMenu = menuName;
     currentMenuStart = performance.now();
-    trackEvent('menu_open', Object.assign({ menu_name: menuName }, extraProps || {}));
+    currentMenuProps = extraProps || {};
+    trackEvent('menu_open', Object.assign({ menu_name: menuName }, currentMenuProps));
   }
 
   function trackMenuClose(menuName, durationMs) {
@@ -59,10 +62,11 @@
         ? Math.round(performance.now() - currentMenuStart)
         : 0;
     }
-    trackEvent('menu_duration', { menu_name: menuName, duration_ms: durationMs });
+    trackEvent('menu_duration', Object.assign({}, currentMenuProps || {}, { menu_name: menuName, duration_ms: durationMs }));
     if (menuName === currentMenu) {
       currentMenu = null;
       currentMenuStart = null;
+      currentMenuProps = null;
     }
   }
 
@@ -73,7 +77,8 @@
     }
     currentRoute = routeName;
     currentRouteStart = performance.now();
-    trackEvent('route_open', Object.assign({ route_name: routeName }, extraProps || {}));
+    currentRouteProps = extraProps || {};
+    trackEvent('route_open', Object.assign({ route_name: routeName }, currentRouteProps));
   }
 
   function trackRouteClose(routeName, durationMs) {
@@ -84,10 +89,11 @@
         ? Math.round(performance.now() - currentRouteStart)
         : 0;
     }
-    trackEvent('route_duration', { route_name: routeName, duration_ms: durationMs });
+    trackEvent('route_duration', Object.assign({}, currentRouteProps || {}, { route_name: routeName, duration_ms: durationMs }));
     if (routeName === currentRoute) {
       currentRoute = null;
       currentRouteStart = null;
+      currentRouteProps = null;
     }
   }
 
@@ -109,11 +115,11 @@
     var now = performance.now();
     if (currentMenu) {
       var menuDur = currentMenuStart != null ? Math.round(now - currentMenuStart) : 0;
-      safeCapture('menu_duration', { menu_name: currentMenu, duration_ms: menuDur, unload: reason === 'pagehide', end_reason: reason });
+      safeCapture('menu_duration', Object.assign({}, currentMenuProps || {}, { menu_name: currentMenu, duration_ms: menuDur, unload: reason === 'pagehide', end_reason: reason }));
     }
     if (currentRoute) {
       var routeDur = currentRouteStart != null ? Math.round(now - currentRouteStart) : 0;
-      safeCapture('route_duration', { route_name: currentRoute, duration_ms: routeDur, unload: reason === 'pagehide', end_reason: reason });
+      safeCapture('route_duration', Object.assign({}, currentRouteProps || {}, { route_name: currentRoute, duration_ms: routeDur, unload: reason === 'pagehide', end_reason: reason }));
     }
   }
 
