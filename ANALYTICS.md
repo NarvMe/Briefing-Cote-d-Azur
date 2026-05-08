@@ -38,9 +38,13 @@ Wird auch beim `pagehide` (Seitenschluss) und `visibilitychange:hidden`
 (App in den Hintergrund) gefeuert. iOS Safari feuert kein `beforeunload`,
 deshalb wird `pagehide` genutzt.
 
+**Erbt alle Properties vom dazugehörigen `menu_open`** (z.B. `region`),
+sodass eine flache Auswertung pro Region/Menü möglich ist ohne JOIN.
+
 | Property      | Typ    | Beispiel                          |
 | ------------- | ------ | --------------------------------- |
 | `menu_name`   | string | `weather`                         |
+| `region`      | string | `cote-azur` (geerbt von `menu_open`) |
 | `duration_ms` | number | `42_500`                          |
 | `unload`      | bool   | `true` bei `pagehide`             |
 | `end_reason`  | string | `pagehide` \| `hidden` (oder leer) |
@@ -59,9 +63,14 @@ A/B/C in Kroatien). **Verweildauer-Start für die Route**.
 ### `route_duration`
 Route wurde verlassen (durch Toggle, Tab-Wechsel, App-Hide oder Seitenschluss).
 
+**Erbt alle Properties vom dazugehörigen `route_open`** (z.B. `region`, `menu`),
+sodass eine flache Auswertung ohne JOIN möglich ist.
+
 | Property      | Typ    | Beispiel             |
 | ------------- | ------ | -------------------- |
 | `route_name`  | string | `cdazur-ost`         |
+| `region`      | string | `cote-azur` (geerbt) |
+| `menu`        | string | `plan` (geerbt)      |
 | `duration_ms` | number | `15_300`             |
 | `unload`      | bool   | `true` bei `pagehide` |
 | `end_reason`  | string | `pagehide` \| `hidden` (oder leer) |
